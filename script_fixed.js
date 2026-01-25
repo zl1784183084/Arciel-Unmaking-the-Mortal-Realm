@@ -413,12 +413,20 @@ function createResourceCard(resource) {
     const card = document.createElement('div');
     card.className = 'resource-card';
     
-    let descriptionText = resource.description;
-    if (websiteContent.descriptions[resource.description]) {
-        descriptionText = websiteContent.descriptions[resource.description][currentLanguage];
+    // 从描述中提取中文部分作为键名（如果包含"-"）
+    let descriptionKey = resource.description;
+    if (resource.description && resource.description.includes('-')) {
+        descriptionKey = resource.description.split('-')[0].trim();
     }
     
-    console.log(`创建资源卡片: ${resource.filename}, 类型: ${resource.type}, 路径: ${resource.filepath}`);
+    let descriptionText = resource.description; // 默认使用完整描述
+    
+    // 尝试从websiteContent.descriptions中获取对应语言的描述
+    if (websiteContent.descriptions[descriptionKey]) {
+        descriptionText = websiteContent.descriptions[descriptionKey][currentLanguage];
+    }
+    
+    console.log(`创建资源卡片: ${resource.filename}, 类型: ${resource.type}, 路径: ${resource.filepath}, 描述键: ${descriptionKey}, 描述文本: ${descriptionText}`);
     
     let mediaContent = '';
     
