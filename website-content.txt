@@ -38,7 +38,7 @@ english_button=English
 # 格式: [键]=[中文描述]|[英文描述]
 # 注意: 键名必须与资源描述一致
 #descriptions
-模型与动画演示=这是一个3D模型与动画的演示视频，展示了角色的动作和场景互动|This is a 3D model and animation demo video showing character movements and scene interactions
+模型与动画演示=这是一个3D模型与动画的演示视频，用于模型的前期验证|This is a demonstration video of a 3D model and animation, used for preliminary validation of the model
 游戏场景展示=游戏场景的GIF展示，包含环境设计和灯光效果|GIF展示 of game scenes including environment design and lighting effects
 角色设计=角色概念设计图，展示了角色的外观和装备|Character concept design showing appearance and equipment
 特效演示=游戏特效演示视频，包含粒子效果和光影|Game special effects demo video including particle effects and lighting
