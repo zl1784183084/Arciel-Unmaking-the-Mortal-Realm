@@ -189,8 +189,28 @@ function showMainContent() {
     setTimeout(() => {
         languagePage.style.display = 'none';
         mainContent.style.display = 'block';
+        
+        // 更新"最新进度"按钮文本
+        updateLatestProgressButtonText();
+        
         renderResources(); // 直接渲染资源，因为已经解析过了
     }, 500);
+}
+
+// 更新"最新进度"按钮文本
+function updateLatestProgressButtonText() {
+    const latestProgressText = document.getElementById('latest-progress-text');
+    if (latestProgressText) {
+        let text = getText('latest_progress');
+        console.log(`更新最新进度按钮文本: currentLanguage=${currentLanguage}, text=${text}, textContent.cn=${JSON.stringify(textContent.cn['latest_progress'])}, textContent.en=${JSON.stringify(textContent.en['latest_progress'])}`);
+        
+        // 如果getText返回键名本身，说明文本没有正确加载，使用默认文本
+        if (text === 'latest_progress') {
+            text = currentLanguage === 'cn' ? '最新进度' : 'Latest Progress';
+        }
+        
+        latestProgressText.textContent = text;
+    }
 }
 
 // 初始化事件监听器

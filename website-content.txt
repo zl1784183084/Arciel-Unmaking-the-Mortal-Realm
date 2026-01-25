@@ -57,6 +57,7 @@ loading=加载中...|Loading...
 close=关闭|Close
 play_video=播放视频|Play Video
 copyright=© 2025-2026 Zlilay|© 2025-2026 Zlilay
+latest_progress=最新进度|Latest Progress
 
 # ========================
 # 使用说明
