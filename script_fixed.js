@@ -53,7 +53,127 @@ function initLanguageSelection() {
 function selectLanguage(lang) {
     currentLanguage = lang;
     localStorage.setItem('websiteLanguage', lang);
-    showMainContent();
+    
+    // 显示加载状态
+    showLoadingState();
+    
+    // 开始预加载资源
+    preloadResources().then(() => {
+        // 资源加载完成后显示主内容
+        showMainContent();
+    }).catch((error) => {
+        console.error('资源预加载失败:', error);
+        // 即使预加载失败，也显示主内容
+        showMainContent();
+    });
+}
+
+// 显示加载状态
+function showLoadingState() {
+    const languageButtons = document.querySelector('.language-buttons');
+    const languageTitle = document.querySelector('.language-title-text');
+    
+    if (languageButtons && languageTitle) {
+        languageButtons.style.display = 'none';
+        languageTitle.textContent = '加载资源中...';
+        
+        // 添加加载动画
+        const loadingSpinner = document.createElement('div');
+        loadingSpinner.className = 'loading-spinner';
+        loadingSpinner.style.margin = '20px auto';
+        loadingSpinner.style.width = '40px';
+        loadingSpinner.style.height = '40px';
+        loadingSpinner.style.border = '3px solid var(--border-color)';
+        loadingSpinner.style.borderTopColor = 'var(--accent-color)';
+        loadingSpinner.style.borderRadius = '50%';
+        loadingSpinner.style.animation = 'spin 1s linear infinite';
+        
+        languageTitle.parentNode.appendChild(loadingSpinner);
+    }
+}
+
+// 预加载资源
+function preloadResources() {
+    return new Promise((resolve, reject) => {
+        // 先加载内容文件
+        loadWebsiteContentForPreload().then(() => {
+            // 然后预加载所有媒体资源
+            preloadMediaResources().then(resolve).catch(resolve);
+        }).catch(resolve); // 即使失败也继续
+    });
+}
+
+// 为预加载加载网站内容
+function loadWebsiteContentForPreload() {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', CONFIG.contentFile, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 0 || xhr.status === 200) {
+                    const contentText = xhr.responseText;
+                    parseContentFile(contentText);
+                    resolve();
+                } else {
+                    reject(new Error(`加载内容文件失败，状态码: ${xhr.status}`));
+                }
+            }
+        };
+        xhr.onerror = function() {
+            reject(new Error('网络错误，无法加载内容文件'));
+        };
+        xhr.send();
+    });
+}
+
+// 预加载媒体资源
+function preloadMediaResources() {
+    return new Promise((resolve) => {
+        if (websiteContent.resources.length === 0) {
+            resolve();
+            return;
+        }
+        
+        let loadedCount = 0;
+        const totalCount = websiteContent.resources.length;
+        
+        websiteContent.resources.forEach(resource => {
+            if (resource.type === 'video' || resource.type === 'gif' || resource.type === 'image') {
+                const media = resource.type === 'video' ? document.createElement('video') : document.createElement('img');
+                
+                media.onload = () => {
+                    loadedCount++;
+                    checkAllLoaded();
+                };
+                
+                media.onerror = () => {
+                    loadedCount++;
+                    checkAllLoaded();
+                };
+                
+                media.src = resource.filepath;
+                
+                // 对于视频，设置预加载属性
+                if (resource.type === 'video') {
+                    media.preload = 'auto';
+                }
+            } else {
+                loadedCount++;
+                checkAllLoaded();
+            }
+        });
+        
+        function checkAllLoaded() {
+            if (loadedCount >= totalCount) {
+                resolve();
+            }
+        }
+        
+        // 设置超时，避免某些资源加载过慢
+        setTimeout(() => {
+            resolve();
+        }, 5000); // 5秒超时
+    });
 }
 
 // 显示主内容
@@ -63,7 +183,7 @@ function showMainContent() {
     setTimeout(() => {
         languagePage.style.display = 'none';
         mainContent.style.display = 'block';
-        loadWebsiteContent();
+        renderResources(); // 直接渲染资源，因为已经解析过了
     }, 500);
 }
 
@@ -234,7 +354,7 @@ function parseResourceLine(line) {
     
     const description = parts[1];
     const filename = parts.slice(2).join('.');
-    const filepath = `资源/${filename}`;
+    const filepath = `./资源/${filename}`; // 使用 ./ 明确表示相对于当前目录
     
     const extension = filename.substring(filename.lastIndexOf('.')).toLowerCase();
     let type = 'unknown';

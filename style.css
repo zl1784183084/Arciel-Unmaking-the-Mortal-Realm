@@ -793,6 +793,13 @@ body {
     }
 }
 
+/* 语言选择页面加载动画 */
+.language-page .loading-spinner {
+    margin: 20px auto;
+    width: 40px;
+    height: 40px;
+}
+
 /* 空状态 */
 .empty-state {
     text-align: center;
