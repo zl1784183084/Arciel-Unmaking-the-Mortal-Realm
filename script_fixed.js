@@ -75,7 +75,13 @@ function showLoadingState() {
     
     if (languageButtons && languageTitle) {
         languageButtons.style.display = 'none';
-        languageTitle.textContent = '加载资源中...';
+        
+        // 根据当前语言显示不同的加载文本
+        if (currentLanguage === 'cn') {
+            languageTitle.textContent = '加载资源中...';
+        } else {
+            languageTitle.textContent = 'Loading resources...';
+        }
         
         // 添加加载动画
         const loadingSpinner = document.createElement('div');
@@ -439,7 +445,15 @@ function createResourceCard(resource) {
             </div>
         `;
     } else {
-        mediaContent = `<img src="${resource.filepath}" alt="${descriptionText}" class="resource-preview" onerror="console.error('图片加载失败:', this.src)">`;
+        // 普通图片也添加预览功能
+        mediaContent = `
+            <img src="${resource.filepath}" alt="${descriptionText}" class="resource-preview" onerror="console.error('图片加载失败:', this.src)">
+            <div class="video-overlay">
+                <div class="play-button" data-image="${resource.filepath}" data-title="${descriptionText}">
+                    <i class="fas fa-expand"></i>
+                </div>
+            </div>
+        `;
     }
     
     card.innerHTML = `
@@ -459,14 +473,18 @@ function createResourceCard(resource) {
         </div>
     `;
     
-    if (resource.type === 'video' || resource.type === 'gif') {
-        const playButton = card.querySelector('.play-button');
+    // 为所有媒体类型添加点击事件
+    const playButton = card.querySelector('.play-button');
+    if (playButton) {
         playButton.addEventListener('click', () => {
-            console.log(`播放 ${resource.type}: ${resource.filepath}`);
+            console.log(`预览 ${resource.type}: ${resource.filepath}`);
             if (resource.type === 'video') {
                 playVideo(resource.filepath, descriptionText);
-            } else {
+            } else if (resource.type === 'gif') {
                 playGif(resource.filepath, descriptionText);
+            } else {
+                // 普通图片预览
+                playImage(resource.filepath, descriptionText);
             }
         });
     }
@@ -527,6 +545,45 @@ function playGif(gifPath, title) {
     const closeHandler = (e) => {
         if (e.key === 'Escape') {
             document.body.removeChild(gifModal);
+            document.removeEventListener('keydown', closeHandler);
+        }
+    };
+    document.addEventListener('keydown', closeHandler);
+}
+
+// 播放图片（预览）
+function playImage(imagePath, title) {
+    const imageModal = document.createElement('div');
+    imageModal.className = 'video-modal';
+    imageModal.style.display = 'flex';
+    imageModal.innerHTML = `
+        <div class="modal-content" style="max-width: 800px;">
+            <span class="close-modal">&times;</span>
+            <div class="video-container" style="padding-top: 100%;">
+                <img src="${imagePath}" alt="${title}" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <div class="video-info">
+                <h3>${title}</h3>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(imageModal);
+    
+    const closeBtn = imageModal.querySelector('.close-modal');
+    closeBtn.addEventListener('click', () => {
+        document.body.removeChild(imageModal);
+    });
+    
+    imageModal.addEventListener('click', (e) => {
+        if (e.target === imageModal) {
+            document.body.removeChild(imageModal);
+        }
+    });
+    
+    const closeHandler = (e) => {
+        if (e.key === 'Escape') {
+            document.body.removeChild(imageModal);
             document.removeEventListener('keydown', closeHandler);
         }
     };
