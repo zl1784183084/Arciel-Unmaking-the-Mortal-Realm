@@ -23,8 +23,7 @@ const languagePage = document.getElementById('language-page');
 const mainContent = document.getElementById('main-content');
 const chineseBtn = document.getElementById('chinese-btn');
 const englishBtn = document.getElementById('english-btn');
-const languageToggle = document.getElementById('language-toggle');
-const currentLanguageSpan = document.getElementById('current-language');
+const latestProgressBtn = document.getElementById('latest-progress-btn');
 const resourcesContainer = document.getElementById('resources-container');
 const videoModal = document.getElementById('video-modal');
 const modalVideo = document.getElementById('modal-video');
@@ -64,21 +63,20 @@ function showMainContent() {
     setTimeout(() => {
         languagePage.style.display = 'none';
         mainContent.style.display = 'block';
-        updateLanguageToggle();
         loadWebsiteContent();
     }, 500);
 }
 
-// 更新语言切换按钮
-function updateLanguageToggle() {
-    // 直接显示EN或CN，而不是"中文"/"English"
-    currentLanguageSpan.textContent = currentLanguage === 'cn' ? 'CN' : 'EN';
-    languageToggle.title = currentLanguage === 'cn' ? '切换到英文' : 'Switch to Chinese';
-}
-
 // 初始化事件监听器
 function initEventListeners() {
-    languageToggle.addEventListener('click', toggleLanguage);
+    // 最新进度按钮点击事件 - 跳转到页面最下方
+    latestProgressBtn.addEventListener('click', () => {
+        // 滚动到页面最下方
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
+        });
+    });
     
     closeModal.addEventListener('click', () => {
         closeVideoModal();
@@ -102,14 +100,6 @@ function closeVideoModal() {
     videoModal.style.display = 'none';
     modalVideo.pause();
     modalVideo.currentTime = 0;
-}
-
-// 切换语言
-function toggleLanguage() {
-    currentLanguage = currentLanguage === 'cn' ? 'en' : 'cn';
-    localStorage.setItem('websiteLanguage', currentLanguage);
-    updateLanguageToggle();
-    renderResources();
 }
 
 // 加载网站内容 - 使用异步XMLHttpRequest（兼容GitHub Pages）

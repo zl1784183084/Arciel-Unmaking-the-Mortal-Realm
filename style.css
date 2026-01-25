@@ -1,4 +1,11 @@
 /* 全局样式 - 暗色调主题 */
+@font-face {
+    font-family: 'PixelFont';
+    src: url('资源/开源像素字体 10px.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     /* 颜色变量 */
     --bg-dark: #0a0a0a;
@@ -13,11 +20,13 @@
     --border-color: #333333;
     --shadow-color: rgba(0, 0, 0, 0.5);
     
-    /* 字体变量 */
-    --font-en: 'Cinzel', 'Times New Roman', serif;
-    --font-en-secondary: 'Crimson Text', serif;
-    --font-cn: 'Microsoft YaHei', '微软雅黑', sans-serif;
-    --font-cn-bold: 'Microsoft YaHei Bold', '微软雅黑 Bold', sans-serif;
+    /* 字体变量 - 使用资源文件夹中的字体 */
+    --font-main: 'PixelFont', 'Microsoft YaHei', '微软雅黑', sans-serif;
+    --font-bold: 'PixelFont', 'Microsoft YaHei Bold', '微软雅黑 Bold', sans-serif;
+    --font-en: 'PixelFont', 'Cinzel', 'Times New Roman', serif;
+    --font-en-secondary: 'PixelFont', 'Crimson Text', serif;
+    --font-cn: 'PixelFont', 'Microsoft YaHei', '微软雅黑', sans-serif;
+    --font-cn-bold: 'PixelFont', 'Microsoft YaHei Bold', '微软雅黑 Bold', sans-serif;
     
     /* 间距 */
     --spacing-xs: 0.5rem;
@@ -65,60 +74,67 @@ body {
 .language-content {
     text-align: center;
     padding: var(--spacing-lg);
-    max-width: 600px;
+    width: 100%;
+    max-width: 800px; /* 增加最大宽度 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 垂直居中 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10; /* 确保按钮在头图上方 */
 }
 
-.language-logo {
+.language-header {
+    margin-bottom: var(--spacing-sm); /* 进一步减少间距 */
+    width: 100%;
+}
+
+.language-title {
     margin-bottom: var(--spacing-md);
+    width: 100%;
 }
 
-.language-logo img {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(138, 43, 226, 0.3));
-}
-
-.language-content h1 {
-    font-family: var(--font-en);
-    font-size: 3.5rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin-bottom: var(--spacing-lg);
+.language-title-text {
+    font-family: var(--font-cn-bold);
+    font-size: 2rem;
     color: var(--text-primary);
-    text-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
-    line-height: 1.2;
+    text-shadow: 0 2px 10px var(--shadow-color);
 }
 
 .language-buttons {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm); /* 减少按钮间距 */
     margin-bottom: var(--spacing-md);
 }
 
 .language-btn {
-    background: linear-gradient(135deg, var(--bg-light), var(--bg-lighter));
-    border: 2px solid var(--border-color);
+    background: rgba(26, 26, 26, 0.9); /* 更不透明的背景 */
+    backdrop-filter: blur(5px); /* 减少毛玻璃效果 */
+    border: 2px solid rgba(255, 255, 255, 0.2); /* 稍微粗一点的边框 */
     color: var(--text-primary);
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 1.2rem;
+    padding: 4px 8px; /* 进一步减小按钮大小 */
+    font-size: 1.4rem; /* 减小按钮字体大小 */
     font-family: var(--font-cn-bold);
-    border-radius: 8px;
+    border-radius: 6px; /* 稍微增加圆角 */
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
-    min-width: 150px;
+    min-width: 80px; /* 进一步减小最小宽度 */
     justify-content: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); /* 稍微粗一点的阴影 */
 }
 
 .language-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px var(--shadow-color);
+    transform: translateY(-2px); /* 稍微明显的悬停效果 */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* 稍微粗一点的悬停阴影 */
     border-color: var(--accent-color);
-    background: linear-gradient(135deg, var(--bg-lighter), var(--bg-light));
+    background: rgba(42, 42, 42, 0.95); /* 悬停时稍微加深 */
 }
 
 .language-btn .flag {
@@ -176,7 +192,7 @@ body {
 }
 
 .logo-text {
-    font-family: var(--font-en);
+    font-family: 'PixelFont', var(--font-en);
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
@@ -188,33 +204,260 @@ body {
 }
 
 .nav-btn {
-    background: var(--bg-light);
-    border: 1px solid var(--border-color);
+    background: rgba(26, 26, 26, 0.8); /* 更透明的背景，更扁平 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 更细的边框，更扁平 */
     color: var(--text-primary);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: 4px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 4px; /* 减小圆角，更扁平 */
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
-    font-family: var(--font-cn);
-    transition: all 0.3s ease;
+    font-family: var(--font-cn-bold);
+    font-size: 1.1rem; /* 增大主页面语言切换按钮字体 */
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* 更扁平的阴影 */
 }
 
 .nav-btn:hover {
-    background: var(--bg-lighter);
+    background: rgba(42, 42, 42, 0.9); /* 悬停时稍微加深 */
     border-color: var(--accent-color);
+    transform: translateY(-1px); /* 更小的悬停效果 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* 更扁平的悬停阴影 */
 }
 
-/* 头图区域 */
+/* 删掉语言切换图案 */
+.nav-btn i {
+    display: none; /* 隐藏语言切换图标 */
+}
+
+/* 头图区域 - 电脑端填满两边，不留空 */
 .hero-section {
     height: 100vh;
-    background: url('资源/头图.png') center/cover no-repeat;
+    min-height: 500px;
+    background: 
+        linear-gradient(to bottom, 
+            rgba(10, 10, 10, 0) 0%,
+            rgba(10, 10, 10, 0) 70%,
+            rgba(10, 10, 10, 0.3) 85%,
+            rgba(10, 10, 10, 0.7) 95%,
+            var(--bg-dark) 100%
+        ),
+        url('资源/头图.png') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     margin-top: 60px; /* 导航栏高度 */
+    background-size: cover;
+    background-position: center center;
+}
+
+/* 语言选择头图 - 完整显示，无黑边遮挡 */
+.language-header-image {
+    width: 100%;
+    height: 60vh; /* 恢复原来的高度 */
+    min-height: 300px; /* 恢复原来的最小高度 */
+    margin-bottom: 0; /* 零边距，让按钮紧挨头图 */
+    background: url('资源/语言选择_头图.png') center/contain no-repeat;
+    background-size: contain; /* 完整显示图片，无裁剪 */
+    background-position: center center;
+    background-color: transparent; /* 移除背景色，避免黑边 */
+}
+
+/* 隐藏语言选择界面的LOGO */
+.language-logo {
+    display: none;
+}
+
+/* 响应式优化 - 确保所有屏幕尺寸都能完整显示 */
+@media (max-width: 1200px) {
+    .hero-section {
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        background: 
+            linear-gradient(to bottom, 
+                rgba(10, 10, 10, 0) 0%,
+                rgba(10, 10, 10, 0) 60%,
+                rgba(10, 10, 10, 0.4) 80%,
+                rgba(10, 10, 10, 0.8) 95%,
+                var(--bg-dark) 100%
+            ),
+            url('资源/头图.png') center/contain no-repeat;
+        background-size: contain;
+        background-position: center center;
+        background-color: var(--bg-dark);
+    }
+    
+    .language-header-image {
+        height: 50vh; /* 恢复原来的高度 */
+        min-height: 250px; /* 恢复原来的最小高度 */
+        margin-bottom: 0; /* 零边距，让按钮紧挨头图 */
+        background-size: contain; /* 完整显示图片，无裁剪 */
+        background-color: transparent; /* 移除背景色，避免黑边 */
+    }
+    
+    /* 移动端语言选择界面更简洁 */
+    .language-content {
+        padding: var(--spacing-md);
+        width: 100%;
+        max-width: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10; /* 确保按钮在头图上方 */
+    }
+    
+    .language-buttons {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .language-btn {
+        width: 100%;
+        max-width: 300px;
+        padding: 4px 8px; /* 与桌面端保持一致 */
+        font-size: 1.2rem; /* 减小移动端按钮字体大小 */
+        min-width: 80px; /* 与桌面端保持一致 */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        background-position: center center;
+        background-size: contain;
+        min-height: 400px;
+        background-color: var(--bg-dark);
+    }
+    
+    .language-header-image {
+        height: 45vh; /* 恢复原来的高度 */
+        min-height: 200px; /* 恢复原来的最小高度 */
+        margin-bottom: 0; /* 零边距，让按钮紧挨头图 */
+        background-size: contain; /* 完整显示图片，无裁剪 */
+        background-color: transparent; /* 移除背景色，避免黑边 */
+    }
+    
+    .language-content {
+        padding: var(--spacing-sm);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 10; /* 确保按钮在头图上方 */
+    }
+    
+    .language-btn {
+        font-size: 1.1rem; /* 减小移动端按钮字体大小 */
+        padding: 4px 8px; /* 与桌面端保持一致 */
+        min-width: 80px; /* 与桌面端保持一致 */
+    }
+}
+
+/* 修复小屏幕自适应问题 - 无论屏幕多窄都要完整显示 */
+@media (max-width: 375px) {
+    .language-header-image {
+        height: 55vh;
+        min-height: 180px;
+        margin-bottom: 0; /* 零边距，让按钮紧挨头图 */
+    }
+    
+    .language-content {
+        padding: var(--spacing-sm);
+    }
+    
+    .language-btn {
+        font-size: 1.1rem;
+        padding: var(--spacing-sm);
+        min-width: 140px;
+        min-height: 50px;
+    }
+}
+
+/* 超小屏幕优化 - 确保图片完整显示 */
+@media (max-width: 320px) {
+    .language-header-image {
+        height: 50vh;
+        min-height: 150px;
+        margin-bottom: 0; /* 零边距，让按钮紧挨头图 */
+    }
+    
+    .language-content {
+        padding: var(--spacing-xs);
+    }
+    
+    .language-btn {
+        font-size: 1rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        min-width: 120px;
+    }
+}
+
+/* 确保语言选择界面在手机上垂直居中 */
+@media (max-height: 700px) {
+    .language-content {
+        padding: var(--spacing-sm);
+    }
+    
+    .language-header-image {
+        height: 50vh;
+        min-height: 150px;
+        margin-bottom: 0; /* 零边距，让按钮紧挨头图 */
+    }
+}
+
+/* 超矮屏幕优化 */
+@media (max-height: 500px) {
+    .language-header-image {
+        height: 40vh;
+        min-height: 120px;
+        margin-bottom: 0; /* 零边距，让按钮紧挨头图 */
+    }
+    
+    .language-content {
+        padding: var(--spacing-xs);
+    }
+}
+
+/* 修复：无论屏幕多窄都要完整按比例显示图片 */
+@media (max-width: 280px) {
+    .language-header-image {
+        height: 45vh;
+        min-height: 120px;
+        margin-bottom: 0; /* 零边距，让按钮紧挨头图 */
+    }
+    
+    .language-content {
+        padding: var(--spacing-xs);
+    }
+    
+    .language-btn {
+        font-size: 0.9rem;
+        padding: var(--spacing-xs);
+        min-width: 100px;
+    }
+}
+
+/* 超宽屏优化 - 填满两边，不留空 */
+@media (min-aspect-ratio: 21/9) {
+    .hero-section {
+        background-position: center center;
+        background-size: cover;
+    }
+}
+
+/* 超高屏优化 - 填满两边，不留空 */
+@media (max-aspect-ratio: 3/4) {
+    .hero-section {
+        background-size: cover;
+        background-position: center center;
+    }
 }
 
 /* 内容区域 */
