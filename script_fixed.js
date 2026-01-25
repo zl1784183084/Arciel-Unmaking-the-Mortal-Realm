@@ -426,6 +426,9 @@ function renderResources() {
         const card = createResourceCard(resource);
         resourcesContainer.appendChild(card);
     });
+    
+    // 确保按钮文本在资源渲染后也更新（GitHub Pages兼容性）
+    updateLatestProgressButtonText();
 }
 
 // 创建资源卡片
