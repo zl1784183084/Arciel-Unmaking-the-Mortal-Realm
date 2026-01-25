@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arciel Unmaking the Mortal Realm</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700;900&family=Crimson+Text:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="资源/头图.png">
+</head>
+<body>
+    <!-- 语言选择页面 -->
+    <div id="language-page" class="language-page">
+        <div class="language-content">
+            <div class="language-logo">
+                <img src="资源/Logo.png" alt="Arciel Logo">
+            </div>
+            <h1>ARCIEL<br>UNMAKING THE MORTAL REALM</h1>
+            <div class="language-buttons">
+                <button id="chinese-btn" class="language-btn pulse">
+                    CN
+                </button>
+                <button id="english-btn" class="language-btn pulse">
+                    EN
+                </button>
+            </div>
+            <p class="language-hint">选择语言 / Select Language</p>
+        </div>
+    </div>
+
+    <!-- 主网站内容 -->
+    <div id="main-content" class="main-content" style="display: none;">
+        <!-- 导航栏 -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="资源/Logo.png" alt="开发者Logo" class="logo-img">
+                    <span class="logo-text">Zlilay</span>
+                </div>
+                <div class="nav-controls">
+                    <button id="language-toggle" class="nav-btn">
+                        <i class="fas fa-language"></i>
+                        <span id="current-language">CN</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 头图区域 -->
+        <section id="hero" class="hero-section">
+            <!-- 头图作为背景，无文字覆盖 -->
+        </section>
+
+        <!-- 资源展示区域 -->
+        <main id="content" class="content-section">
+            <div class="container">
+                <!-- 资源将在这里动态加载 -->
+                <div id="resources-container" class="resources-container">
+                    <!-- 动态生成的内容 -->
+                </div>
+            </div>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <img src="资源/Logo.png" alt="开发者Logo" class="logo-img">
+                        <span class="logo-text">Zlilay</span>
+                    </div>
+                    <p class="copyright">© 2025-2026 Zlilay</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- 视频播放器模态框 -->
+        <div id="video-modal" class="video-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="video-container">
+                    <video id="modal-video" controls>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="video-info">
+                    <h3 id="video-title"></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script_fixed.js"></script>
+</body>
+</html>

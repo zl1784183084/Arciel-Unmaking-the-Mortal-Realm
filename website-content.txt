@@ -1,0 +1,85 @@
+# 网站内容编辑文档
+# 最后更新: 2026年1月24日
+# 编码: UTF-8
+
+# 重要说明:
+# 1. 所有内容都在这一个文件中编辑
+# 2. 修改后保存，刷新网页即可看到变化
+# 3. 资源文件请上传到"资源"文件夹中
+# 4. 资源命名规则: [序号].[描述].[文件名]
+#    例如: 1.模型与动画演示.1.模型与动画演示.mp4
+
+# ========================
+# 资源清单
+# ========================
+# 格式: [序号].[描述].[文件名]
+# 注意: 文件名必须与"资源"文件夹中的实际文件名一致
+#resources
+1.模型与动画演示.1.模型与动画演示-Model and Animation Demo.mp4
+# 示例资源 (取消注释以启用):
+# 2.游戏场景展示.2.游戏场景.gif
+# 3.角色设计.3.角色设计.png
+# 4.特效演示.4.特效演示.mp4
+
+# ========================
+# 标题文本
+# ========================
+# 格式: [键]=[值]
+#titles
+main_title=Arciel : Umaking The Mortal Realm
+developer_name=Zlilay
+language_hint=选择语言 / Select Language
+chinese_button=中文
+english_button=English
+
+# ========================
+# 描述文本 (中英文)
+# ========================
+# 格式: [键]=[中文描述]|[英文描述]
+# 注意: 键名必须与资源描述一致
+#descriptions
+模型与动画演示=这是一个3D模型与动画的演示视频，展示了角色的动作和场景互动|This is a 3D model and animation demo video showing character movements and scene interactions
+游戏场景展示=游戏场景的GIF展示，包含环境设计和灯光效果|GIF展示 of game scenes including environment design and lighting effects
+角色设计=角色概念设计图，展示了角色的外观和装备|Character concept design showing appearance and equipment
+特效演示=游戏特效演示视频，包含粒子效果和光影|Game special effects demo video including particle effects and lighting
+
+# ========================
+# 界面文本 (中英文)
+# ========================
+# 格式: [键]=[中文文本]|[英文文本]
+#ui_text
+no_resources=暂无资源|No resources available
+video=视频|Video
+image=图片|Image
+gif=GIF动画|GIF Animation
+loading=加载中...|Loading...
+close=关闭|Close
+play_video=播放视频|Play Video
+copyright=© 2025-2026 Zlilay|© 2025-2026 Zlilay
+
+# ========================
+# 使用说明
+# ========================
+# 1. 添加新资源:
+#    a. 将文件上传到"资源"文件夹
+#    b. 按照命名规则重命名文件: [序号].[描述].[扩展名]
+#    c. 在#resources部分添加一行: [序号].[描述].[文件名]
+#    d. 在#descriptions部分添加中英文描述
+#
+# 2. 修改文案:
+#    a. 直接修改#descriptions部分的内容
+#    b. 中文在前，英文在后，用"|"分隔
+#
+# 3. 调整顺序:
+#    a. 修改资源行的序号即可调整显示顺序
+#    b. 网站会自动按序号从小到大排序
+#
+# 4. 删除资源:
+#    a. 删除#resources中的对应行
+#    b. 可选: 删除#descriptions中的描述
+#    c. 可选: 从"资源"文件夹中删除文件
+#
+# 5. 支持的文件格式:
+#    - 视频: .mp4, .webm, .ogg, .mov
+#    - 图片: .png, .jpg, .jpeg, .webp
+#    - GIF: .gif

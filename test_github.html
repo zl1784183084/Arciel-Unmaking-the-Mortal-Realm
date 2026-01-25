@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages 文件访问测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #0a0a0a;
+            color: white;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            background: #8a2be2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #console-output {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>GitHub Pages 文件访问测试</h1>
+    
+    <div class="test-section">
+        <h2>测试文件访问</h2>
+        <button onclick="testFile('website-content.txt')">测试 website-content.txt</button>
+        <button onclick="testFile('资源/1.模型与动画演示.mp4')">测试 视频文件</button>
+        <button onclick="testFile('资源/头图.png')">测试 头图</button>
+        <button onclick="testFile('资源/Logo.png')">测试 Logo</button>
+        <button onclick="clearConsole()">清空控制台</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>控制台输出</h2>
+        <div id="console-output"></div>
+    </div>
+    
+    <script>
+        const consoleOutput = document.getElementById('console-output');
+        
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            consoleOutput.innerHTML += `[${timestamp}] ${message}\n`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            console.log(message);
+        }
+        
+        function clearConsole() {
+            consoleOutput.innerHTML = '';
+        }
+        
+        async function testFile(filepath) {
+            log(`测试文件: ${filepath}`);
+            
+            try {
+                // 使用HEAD请求检查文件是否存在
+                const response = await fetch(filepath, { method: 'HEAD' });
+                if (response.ok) {
+                    log(`✓ ${filepath} 存在 (状态: ${response.status})`);
+                    
+                    // 如果是文本文件，获取内容
+                    if (filepath.endsWith('.txt')) {
+                        const textResponse = await fetch(filepath);
+                        const text = await textResponse.text();
+                        log(`内容长度: ${text.length} 字符`);
+                        log(`前200字符: ${text.substring(0, 200)}...`);
+                    }
+                    
+                    // 如果是媒体文件，尝试加载
+                    if (filepath.match(/\.(mp4|png|jpg|jpeg|gif)$/i)) {
+                        const media = filepath.endsWith('.mp4') 
+                            ? document.createElement('video')
+                            : document.createElement('img');
+                        
+                        await new Promise((resolve, reject) => {
+                            media.onload = resolve;
+                            media.onerror = reject;
+                            media.src = filepath;
+                        });
+                        log(`✓ ${filepath} 可加载为媒体文件`);
+                    }
+                } else {
+                    log(`✗ ${filepath} 不存在 (状态: ${response.status})`);
+                }
+            } catch (error) {
+                log(`✗ ${filepath} 访问错误: ${error.message}`);
+            }
+        }
+        
+        // 初始日志
+        log('测试页面已加载');
+        log(`当前URL: ${window.location.href}`);
+        log(`协议: ${window.location.protocol}`);
+    </script>
+</body>
+</html>

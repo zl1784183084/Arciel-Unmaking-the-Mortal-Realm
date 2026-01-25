@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #console-output {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>网站调试页面</h1>
+    
+    <div class="test-section">
+        <h2>基本测试</h2>
+        <button onclick="testFileAccess()">测试文件访问</button>
+        <button onclick="testParseContent()">测试内容解析</button>
+        <button onclick="testResourceFiles()">测试资源文件</button>
+        <button onclick="clearConsole()">清空控制台</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>控制台输出</h2>
+        <div id="console-output"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>直接测试</h2>
+        <div id="direct-test">
+            <p>点击按钮直接测试网站功能</p>
+            <button onclick="runFullTest()">运行完整测试</button>
+        </div>
+    </div>
+    
+    <script>
+        const consoleOutput = document.getElementById('console-output');
+        
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            consoleOutput.innerHTML += `[${timestamp}] ${message}\n`;
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+        
+        function clearConsole() {
+            consoleOutput.innerHTML = '';
+        }
+        
+        // 测试文件访问
+        async function testFileAccess() {
+            log('测试文件访问...');
+            
+            // 测试website-content.txt
+            try {
+                const response = await fetch('website-content.txt');
+                if (response.ok) {
+                    const text = await response.text();
+                    log(`✓ website-content.txt 加载成功，长度: ${text.length} 字符`);
+                    log(`文件前100字符: ${text.substring(0, 100)}...`);
+                } else {
+                    log(`✗ website-content.txt 加载失败，状态: ${response.status}`);
+                }
+            } catch (error) {
+                log(`✗ website-content.txt 访问错误: ${error.message}`);
+            }
+            
+            // 测试资源文件
+            const resourceFiles = [
+                '资源/头图.png',
+                '资源/Logo.png',
+                '资源/1.模型与动画演示.mp4'
+            ];
+            
+            for (const file of resourceFiles) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    if (response.ok) {
+                        log(`✓ ${file} 存在`);
+                    } else {
+                        log(`✗ ${file} 不存在，状态: ${response.status}`);
+                    }
+                } catch (error) {
+                    log(`✗ ${file} 访问错误: ${error.message}`);
+                }
+            }
+        }
+        
+        // 测试内容解析
+        async function testParseContent() {
+            log('测试内容解析...');
+            
+            try {
+                const response = await fetch('website-content.txt');
+                const text = await response.text();
+                
+                // 简单解析
+                const lines = text.split('\n');
+                let inResources = false;
+                let resourceCount = 0;
+                
+                for (const line of lines) {
+                    const trimmed = line.trim();
+                    if (trimmed === '#resources') {
+                        inResources = true;
+                        log('找到 #resources 章节');
+                    } else if (trimmed.startsWith('#') && trimmed !== '#resources') {
+                        inResources = false;
+                    } else if (inResources && trimmed && !trimmed.startsWith('#')) {
+                        resourceCount++;
+                        log(`解析资源行 ${resourceCount}: ${trimmed}`);
+                        
+                        // 尝试解析
+                        const parts = trimmed.split('.');
+                        if (parts.length >= 3) {
+                            const order = parseInt(parts[0]);
+                            const description = parts[1];
+                            const filename = parts.slice(2).join('.');
+                            log(`  序号: ${order}, 描述: ${description}, 文件名: ${filename}`);
+                        } else {
+                            log(`  警告: 格式不正确，只有 ${parts.length} 部分`);
+                        }
+                    }
+                }
+                
+                log(`总计找到 ${resourceCount} 个资源`);
+                
+            } catch (error) {
+                log(`解析错误: ${error.message}`);
+            }
+        }
+        
+        // 测试资源文件
+        async function testResourceFiles() {
+            log('测试资源文件...');
+            
+            // 从website-content.txt获取资源列表
+            try {
+                const response = await fetch('website-content.txt');
+                const text = await response.text();
+                const lines = text.split('\n');
+                let inResources = false;
+                
+                for (const line of lines) {
+                    const trimmed = line.trim();
+                    if (trimmed === '#resources') {
+                        inResources = true;
+                    } else if (trimmed.startsWith('#') && trimmed !== '#resources') {
+                        inResources = false;
+                    } else if (inResources && trimmed && !trimmed.startsWith('#')) {
+                        const parts = trimmed.split('.');
+                        if (parts.length >= 3) {
+                            const filename = parts.slice(2).join('.');
+                            const filepath = `资源/${filename}`;
+                            
+                            // 测试文件是否存在
+                            try {
+                                const img = new Image();
+                                await new Promise((resolve, reject) => {
+                                    img.onload = resolve;
+                                    img.onerror = reject;
+                                    img.src = filepath;
+                                });
+                                log(`✓ ${filepath} 可加载`);
+                            } catch (error) {
+                                log(`✗ ${filepath} 无法加载`);
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                log(`测试资源文件错误: ${error.message}`);
+            }
+        }
+        
+        // 运行完整测试
+        async function runFullTest() {
+            log('=== 开始完整测试 ===');
+            await testFileAccess();
+            await testParseContent();
+            await testResourceFiles();
+            log('=== 完整测试完成 ===');
+        }
+        
+        // 初始日志
+        log('调试页面已加载');
+        log(`当前协议: ${window.location.protocol}`);
+        log(`用户代理: ${navigator.userAgent.substring(0, 50)}...`);
+    </script>
+</body>
+</html>
