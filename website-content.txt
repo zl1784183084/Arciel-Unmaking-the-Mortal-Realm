@@ -17,7 +17,7 @@
 #resources
 1.模型与动画演示-Model and Animation Demo.1.模型与动画演示-Model and Animation Demo.mp4
 2.主视觉图(暂定)-Main Visual Image (Tentative).2.主视觉图(暂定)-Main Visual Image (Tentative).png
-3.基础移动的动画草稿-Rough draft of basic movement animation.3.基础移动的动画草稿-Rough draft of basic movement animation.gif
+3.基础移动的动画草稿-Rough draft of basic movement animation.3.基础移动的动画草稿-Rough draft of basic movement animation.png
 # 示例资源 (取消注释以启用):
 # 2.游戏场景展示.2.游戏场景.gif
 # 3.角色设计.3.角色设计.png
