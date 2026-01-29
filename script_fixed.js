@@ -380,7 +380,10 @@ function parseResourceLine(line) {
     
     const description = parts[1];
     const filename = parts.slice(2).join('.');
-    const filepath = `./资源/${filename}`; // 使用 ./ 明确表示相对于当前目录
+    
+    // 对文件名进行编码，处理空格和特殊字符
+    const encodedFilename = encodeURIComponent(filename);
+    const filepath = `./资源/${encodedFilename}`; // 使用 ./ 明确表示相对于当前目录
     
     const extension = filename.substring(filename.lastIndexOf('.')).toLowerCase();
     let type = 'unknown';
@@ -392,6 +395,8 @@ function parseResourceLine(line) {
     } else if (['.png', '.jpg', '.jpeg', '.webp'].includes(extension)) {
         type = 'image';
     }
+    
+    console.log(`解析资源行: ${line}, 类型: ${type}, 文件路径: ${filepath}, 原始文件名: ${filename}`);
     
     return {
         order: order,
@@ -468,13 +473,16 @@ function createResourceCard(resource) {
         `;
     } else if (resource.type === 'gif') {
         mediaContent = `
-            <img src="${resource.filepath}" alt="${descriptionText}" class="resource-preview" onerror="console.error('图片加载失败:', this.src)">
+            <img src="${resource.filepath}" alt="${descriptionText}" class="resource-preview" 
+                 onload="console.log('GIF加载成功:', this.src)" 
+                 onerror="console.error('GIF加载失败:', this.src)">
             <div class="video-overlay">
                 <div class="play-button" data-gif="${resource.filepath}" data-title="${descriptionText}">
                     <i class="fas fa-play"></i>
                 </div>
             </div>
         `;
+        console.log(`创建GIF资源卡片: ${resource.filepath}, 描述: ${descriptionText}`);
     } else {
         // 普通图片也添加预览功能
         mediaContent = `
