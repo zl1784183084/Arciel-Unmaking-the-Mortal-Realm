@@ -17,6 +17,7 @@
 #resources
 1.模型与动画演示-Model and Animation Demo.1.模型与动画演示-Model and Animation Demo.mp4
 2.主视觉图(暂定)-Main Visual Image (Tentative).2.主视觉图(暂定)-Main Visual Image (Tentative).png
+3.基础移动的动画草稿-Rough draft of basic movement animation.3.基础移动的动画草稿-Rough draft of basic movement animation.gif
 # 示例资源 (取消注释以启用):
 # 2.游戏场景展示.2.游戏场景.gif
 # 3.角色设计.3.角色设计.png
@@ -41,6 +42,7 @@ english_button=English
 #descriptions
 模型与动画演示=3D模型与动画的演示视频，用于模型的前期验证|This is a demonstration video of a 3D model and animation, used for preliminary validation of the model
 主视觉图(暂定)=游戏的主视觉海报(暂定)|This is the main visual poster for the game(Tentative)
+基础移动的动画草稿=基础移动的动画草稿，由于对流程的不熟悉，花了比预期要长很多的时间来制作...|Basic movement animation draft, due to unfamiliarity with the process, took much longer than expected to create...
 #角色设计=角色概念设计图，展示了角色的外观和装备|Character concept design showing appearance and equipment
 #特效演示=游戏特效演示视频，包含粒子效果和光影|Game special effects demo video including particle effects and lighting
 
