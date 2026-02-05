@@ -19,6 +19,7 @@
 2.主视觉图(暂定)-Main Visual Image (Tentative).2.主视觉图(暂定)-Main Visual Image (Tentative).png
 3.基础移动的动画草稿-Rough draft of basic movement animation.3.基础移动的动画草稿-Rough draft of basic movement animation.gif
 4.机制动画制作的尝试-Exploring Mechanical Animation.4.机制动画制作的尝试-Exploring Mechanical Animation.gif
+5.奔跑时的重心倾斜细节-Details of center‑of‑mass tilt during running.5.奔跑时的重心倾斜细节-Details of center‑of‑mass tilt during running.mp4
 # 示例资源 (取消注释以启用):
 # 2.游戏场景展示.2.游戏场景.gif
 # 3.角色设计.3.角色设计.png
@@ -45,6 +46,7 @@ english_button=English
 主视觉图(暂定)=游戏的主视觉海报(暂定)|This is the main visual poster for the game(Tentative)
 基础移动的动画草稿=角色基础移动的动画草稿，由于对流程的不熟悉，花了比预期要长很多的时间来制作...|Animation draft for basic character movement, due to unfamiliarity with the process, took much longer than expected to create...
 机制动画制作的尝试=第一次尝试跑通这个流程，对于什么地方需要什么样的动画资源还是不够清晰，所以有必要多做点实验|This is my first attempt at running through the workflow, and I’m still not entirely clear about what animation assets are needed at each stage, so it feels necessary to run more experiments.
+奔跑时的重心倾斜细节=你应该可以看出我对动画应用了抽帧效果，这是我很喜欢的动画表现形式，然后我试着对奔跑动画混合了这种重心变化的效果，追求这些细节是因为我的游戏是一款极其重视操作手感的游戏，这也是我的首要任务|You can probably tell that I applied a stepped‑frame effect to the animation — it’s a style I really enjoy. I then tried blending this kind of center‑of‑mass shifting into the run animation as well. I pursue these details because my game places an extreme emphasis on the feel of player control, and achieving that is my top priority.
 #角色设计=角色概念设计图，展示了角色的外观和装备|Character concept design showing appearance and equipment
 #特效演示=游戏特效演示视频，包含粒子效果和光影|Game special effects demo video including particle effects and lighting
 
