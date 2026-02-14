@@ -20,7 +20,7 @@
 3.基础移动的动画草稿-Rough draft of basic movement animation.3.基础移动的动画草稿-Rough draft of basic movement animation.gif
 4.机制动画制作的尝试-Exploring Mechanical Animation.4.机制动画制作的尝试-Exploring Mechanical Animation.gif
 5.奔跑时的重心倾斜细节-Details of center‑of‑mass tilt during running.5.奔跑时的重心倾斜细节-Details of center‑of‑mass tilt during running.mp4
-6.烘焙与物理，速度与混合-Baking and physics, speed and blending.gif
+6.烘焙与物理，速度与混合-Baking and physics, speed and blending.6.烘焙与物理，速度与混合-Baking and physics, speed and blending.gif
 # 示例资源 (取消注释以启用):
 # 2.游戏场景展示.2.游戏场景.gif
 # 3.角色设计.3.角色设计.png
