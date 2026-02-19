@@ -22,6 +22,7 @@
 5.奔跑时的重心倾斜细节-Details of center‑of‑mass tilt during running.5.奔跑时的重心倾斜细节-Details of center‑of‑mass tilt during running.mp4
 6.烘焙与物理，速度与混合-Baking and physics, speed and blending.6.烘焙与物理，速度与混合-Baking and physics, speed and blending.gif
 7.根运动-RootMotion.7.根运动-RootMotion.gif
+8.奔跑重心偏移-shift in running center of gravity.8.奔跑重心偏移-shift in running center of gravity.gif
 # 示例资源 (取消注释以启用):
 # 2.游戏场景展示.2.游戏场景.gif
 # 3.角色设计.3.角色设计.png
@@ -51,6 +52,7 @@ english_button=English
 奔跑时的重心倾斜细节=你应该可以看出我对动画应用了抽帧效果，这是我很喜欢的动画表现形式，然后我试着对奔跑动画混合了这种重心变化的效果，追求这些细节是因为我的游戏是一款极其重视操作手感的游戏，这也是我的首要任务|You can probably tell that I applied a stepped‑frame effect to the animation — it’s a style I really enjoy. I then tried blending this kind of center‑of‑mass shifting into the run animation as well. I pursue these details because my game places an extreme emphasis on the feel of player control, and achieving that is my top priority.
 烘焙与物理，速度与混合=这段时间的工作一直在研究烘焙动画与衣摆的物理模拟，前者更可控而富有表现力，后者更方便且不受动画混合时间的影响，而我想要尽可能的集二者之长，为了适配手柄的左摇杆线性变换，我让动画混合能够适配速度变化，为了让你能看清我做了什么，我夸张了这个效果|During this period I’ve been studying the relationship between baked animation and cloth‑like physics simulation. The former offers more control and expressiveness, while the latter is more convenient and unaffected by blend times. My goal is to combine the strengths of both. To support the gamepad’s analog stick, I made the animation blending respond to speed changes, and I exaggerated the effect so you can clearly see what I’ve done.
 根运动=根运动可以很好的解决脚底打滑的问题，顺便祝各位农历新年快乐！|Root motion is a great way to solve foot sliding issues. And by the way, happy Lunar New Year to everyone!
+奔跑重心偏移=一些制造操作感的的设计，奔跑转向时的重心偏移效果，当然各种时机和数值仍在调整中|Some design elements that enhance the sense of control, such as the center‑of‑gravity shift during running turns. Of course, the timing and values are still being adjusted.
 #角色设计=角色概念设计图，展示了角色的外观和装备|Character concept design showing appearance and equipment
 #特效演示=游戏特效演示视频，包含粒子效果和光影|Game special effects demo video including particle effects and lighting
 
