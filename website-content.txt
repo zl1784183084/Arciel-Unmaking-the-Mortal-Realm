@@ -24,7 +24,7 @@
 7.根运动-RootMotion.7.根运动-RootMotion.gif
 8.奔跑重心偏移-shift in running center of gravity.8.奔跑重心偏移-shift in running center of gravity.gif
 9.笼中之鸟-A  caged bird.9.笼中之鸟-A  caged bird.png
-10.锁定-Locked.10.锁定-Locked.gif
+10.锁定-Locked.10.锁定-Locked.mp4
 # 示例资源 (取消注释以启用):
 # 2.游戏场景展示.2.游戏场景.gif
 # 3.角色设计.3.角色设计.png
