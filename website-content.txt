@@ -24,6 +24,7 @@
 7.根运动-RootMotion.7.根运动-RootMotion.gif
 8.奔跑重心偏移-shift in running center of gravity.8.奔跑重心偏移-shift in running center of gravity.gif
 9.笼中之鸟-A  caged bird.9.笼中之鸟-A  caged bird.png
+10.锁定-Locked.10.锁定-Locked.mp4
 # 示例资源 (取消注释以启用):
 # 2.游戏场景展示.2.游戏场景.gif
 # 3.角色设计.3.角色设计.png
@@ -55,6 +56,7 @@ english_button=English
 根运动=根运动可以很好的解决脚底打滑的问题，顺便祝各位农历新年快乐！|Root motion is a great way to solve foot sliding issues. And by the way, happy Lunar New Year to everyone!
 奔跑重心偏移=一些制造操作感的的设计，奔跑转向时的重心偏移效果，当然各种时机和数值仍在调整中|Some design elements that enhance the sense of control, such as the center‑of‑gravity shift during running turns. Of course, the timing and values are still being adjusted.
 笼中之鸟=笼中之鸟|A  caged bird
+锁定=我觉得有个炫酷的专门的锁定动画会很有趣|I think having a cool, dedicated lock‑on animation would be really fun.
 #角色设计=角色概念设计图，展示了角色的外观和装备|Character concept design showing appearance and equipment
 #特效演示=游戏特效演示视频，包含粒子效果和光影|Game special effects demo video including particle effects and lighting
 
