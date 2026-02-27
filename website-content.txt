@@ -26,6 +26,7 @@
 9.笼中之鸟-A  caged bird.9.笼中之鸟-A  caged bird.png
 10.锁定-Locked.10.锁定-Locked.mp4
 11.锁定全向移动整合-Lockon Omnidirectional Movement Integration.11.锁定全向移动整合-Lockon Omnidirectional Movement Integration.gif
+12.阿尔齐伊尔-Arciel.12.阿尔齐伊尔-Arciel.png
 # 示例资源 (取消注释以启用):
 # 2.游戏场景展示.2.游戏场景.gif
 # 3.角色设计.3.角色设计.png
@@ -59,6 +60,7 @@ english_button=English
 笼中之鸟=笼中之鸟|A  caged bird
 锁定=我觉得有个炫酷的专门锁定动画会很有趣|I think having a cool, dedicated lock‑on animation would be really fun.
 锁定全向移动整合=整合了这几天的工作，再加入了一些微妙的镜头设计，但是依然是很早期的版本|I’ve consolidated the work from the past few days and added some subtle camera design, but it’s still a very early version.
+阿尔齐伊尔=【阿尔齐伊尔】|【Arciel】
 #角色设计=角色概念设计图，展示了角色的外观和装备|Character concept design showing appearance and equipment
 #特效演示=游戏特效演示视频，包含粒子效果和光影|Game special effects demo video including particle effects and lighting
 
